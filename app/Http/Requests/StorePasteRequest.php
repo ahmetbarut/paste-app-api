@@ -22,7 +22,7 @@ class StorePasteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'content' => 'required|string|min:1|max:65535',
+            'content' => 'required|string|min:1|max:100535',
         ];
     }
 }
