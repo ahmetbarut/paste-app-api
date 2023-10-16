@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Paste;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('paste/{paste}', function (Paste $paste, Request $request) {
+    if ($request->expectsJson()) {
+        return response()->json([
+            'content' => $paste->content,
+            'id' => $paste->id,
+        ]);
+    }
+
+    return view('paste.show')->with('paste', $paste);
+})->name('paste.show');
