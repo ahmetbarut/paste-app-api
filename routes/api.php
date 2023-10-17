@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('pastes', App\Http\Controllers\PasteController::class)->only([
-    'index', 'store', 'show'
+    'store', 'show'
 ]);
