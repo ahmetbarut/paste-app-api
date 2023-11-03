@@ -21,7 +21,9 @@ class PasteController extends Controller
      */
     public function store(StorePasteRequest $request)
     {
-        $paste = Paste::create($request->validated());
+        $paste = Paste::create([
+            'content' => trim($request->input('content')),
+        ]);
         if ($request->hasHeader('X-App-Name') && $request->header('X-App-Name') === 'paste-cli') {
             return response()->json([
                 'url' => route('paste.show', $paste),
